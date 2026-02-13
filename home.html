@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CodeSprint Hackathon 2026 - 48-hour coding marathon featuring algorithmic challenges, system design, and competitive programming at KEC × GUVI" />
+    <title>CodeSprint Hackathon 2026 | KEC × GUVI</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Paste App.css Content Here */
+        /* Root Styles */
+        :root {
+            --kec-color: #002855;
+            --kec-light: #004080;
+            --guvi-color: #46C263;
+            --guvi-dark: #2E8B42;
+            --slate-50: #f8fafc;
+            --slate-300: #cbd5e1;
+            --slate-400: #94a3b8;
+            --slate-500: #64748b;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --slate-950: #020617;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--slate-950);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(15, 23, 42, 0.7);
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .navbar-logos {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background:Hv linear-gradient(to bottom right, var(--kec-color), var(--kec-light));
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo-icon.guvi {
+            background: linear-gradient(to bottom right, var(--guvi-color), var(--guvi-dark));
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #60a5fa, white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-text.guvi {
+            background: none;
+            -webkit-text-fill-color: var(--guvi-color);
+            color: var(--guvi-color);
+        }
+
+        .logo-divider {
+            height: 2rem;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--slate-500), transparent);
+        }
+
+        .nav-menu {
+            display: none;
+            margin-left: 2.5rem;
+            gap: 1.5rem;
+            align-items: baseline;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--guvi-color);
+            border-bottom-color: var(--guvi-color);
+        }
+
+        .btn-register {
+            background: linear-gradient(to right, var(--guvi-color), var(--guvi-dark));
+            color: white;
+            padding: 0.625rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px -1px rgba(70, 194, 99, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-register:hover {
+            background: linear-gradient(to right, var(--guvi-dark), var(--guvi-color));
+            box-shadow: 0 4px 6px -1px rgba(70, 194, 99, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .mobile-menu-button {
+            display: flex;
+            color: #d1d5db;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-button:hover {
+            color: white;
+            background-color: var(--slate-800);
+        }
+
+        .mobile-menu {
+            display: none; /* Hidden by default */
+            background-color: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid var(--slate-700);
+        }
+        
+        .mobile-menu.open {
+            display: block;
+        }
+
+        .mobile-menu-content {
+            padding: 0.5rem 0.5rem 0.75rem;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin-bottom: 0.25rem;
+        }
+
+        .mobile-menu a:hover {
+            background-color: var(--slate-700);
+        }
+
+        .mobile-menu button {
+            width: 100%;
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            background-color: var(--guvi-color);
+            color: white;
+            border-radius: 0.375rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-background {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom right, var(--slate-900), var(--slate-800), var(--slate-900));
+            z-index: -1;
+        }
+
+        .hero-glow-1 {
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 384px;
+            height: 384px;
+            background-color: rgba(0, 40, 85, 0.2);
+            border-radius: 50%;
+            filter: blur(96px);
+            opacity: 0.4;
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .hero-glow-2 {
+            position: absolute;
+            bottom: 25%;
+            right: 25%;
+            width: 384px;
+            height: 384px;
+            background-color: rgba(70, 194, 99, 0.15);
+            border-radius: 50%;
+            filter: blur(96px);
+            opacity: 0.4;
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation-delay: 1s;
+        }
+
+        .hero-glow-3 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 384px;
+            height: 384px;
+            background-color: rgba(139, 92, 246, 0.1);
+            border-radius: 50%;
+            filter: blur(96px);
+            opacity: 0.3;
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            animation-delay: 2s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 1rem;
+            max-width: 1152px;
+            margin: 0 auto;
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: linear-gradient(to right, var(--slate-800), var(--slate-700));
+            border: 1px solid var(--slate-600);
+            color: var(--guvi-color);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-badge svg {
+            margin-right: 0.5rem;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.025em;
+            color: white;
+        }
+
+        .hero-title-gradient {
+            background: linear-gradient(to right, var(--guvi-color), #4ade80, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            margin-top: 1.5rem;
+            font-size: 1.125rem;
+            color: #cbd5e1;
+            max-width: 768px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2.5rem;
+            line-height: 1.75;
+        }
+
+        .hero-description .highlight {
+            color: var(--guvi-color);
+            font-weight: 600;
+        }
+
+        .event-info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            max-width: 896px;
+            margin: 0 auto 3rem;
+        }
+
+        .event-info-card {
+            background-color: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--slate-700);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: transform 0.3s;
+        }
+
+        .event-info-card:hover {
+            transform: scale(1.05);
+        }
+
+        .event-info-card svg {
+            color: var(--guvi-color);
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+        }
+
+        .event-info-text {
+            text-align: left;
+        }
+
+        .event-info-label {
+            font-size: 0.75rem;
+            color: var(--slate-400);
+            display: block;
+        }
+
+        .event-info-value {
+            font-weight: 700;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to right, var(--guvi-color), var(--guvi-dark));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 1.125rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 15px -3px rgba(70, 194, 99, 0.3);
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, var(--guvi-dark), var(--guvi-color));
+            box-shadow: 0 10px 15px -3px rgba(70, 194, 99, 0.5);
+        }
+
+        .btn-primary svg {
+            margin-right: 0.5rem;
+            width: 20px;
+            height: 20px;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--slate-800);
+            border: 2px solid var(--slate-600);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--guvi-color);
+            background-color: var(--slate-700);
+        }
+
+        .btn-secondary svg {
+            margin-left: 0.5rem;
+            width: 20px;
+            height: 20px;
+        }
+
+        .hero-stats {
+            margin-top: 4rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 896px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--guvi-color);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: var(--slate-400);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, -25%); animation-timing-function: cubic-bezier(0.8,0,1,1); }
+            50% { transform: translate(-50%, 0); animation-timing-function: cubic-bezier(0,0,0.2,1); }
+        }
+
+        .scroll-mouse {
+            width: 24px;
+            height: 40px;
+            border: 2px solid var(--slate-600);
+            border-radius: 9999px;
+            display: flex;
+            justify-content: center;
+            padding-top: 0.5rem;
+        }
+
+        .scroll-dot {
+            width: 4px;
+            height: 8px;
+            background-color: var(--guvi-color);
+            border-radius: 9999px;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 6rem 0;
+            background: linear-gradient(to bottom, var(--slate-900), var(--slate-800));
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            color: var(--guvi-color);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            margin-top: 0.75rem;
+            background: linear-gradient(to right, white, var(--slate-400));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-divider {
+            width: 96px;
+            height: 6px;
+            background: linear-gradient(to right, var(--guvi-color), #3b82f6);
+            margin: 0 auto;
+            border-radius: 9999px;
+        }
+
+        .section-description {
+            margin-top: 1.5rem;
+            color: var(--slate-400);
+            max-width: 672px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(to bottom right, var(--slate-800), var(--slate-900));
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid var(--slate-700);
+            transition: all 0.3s;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(70, 194, 99, 0.5);
+            box-shadow: 0 20px 25px -5px rgba(70, 194, 99, 0.1);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .feature-icon.kec {
+            background: linear-gradient(to bottom right, var(--kec-color), var(--kec-light));
+        }
+
+        .feature-icon.guvi {
+            background: linear-gradient(to bottom right, var(--guvi-color), var(--guvi-dark));
+        }
+
+        .feature-icon.purple {
+            background: linear-gradient(to bottom right, #9333ea, #ec4899);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .feature-card p {
+            color: var(--slate-400);
+            line-height: 1.75;
+            font-size: 1rem;
+        }
+
+        /* Tracks Section */
+        .tracks-section {
+            padding: 6rem 0;
+            background: var(--slate-900);
+            position: relative;
+        }
+
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .track-card {
+            background-color: var(--slate-800);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--slate-700);
+            transition: all 0.3s;
+        }
+
+        .track-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(70, 194, 99, 0.5);
+        }
+
+        .track-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .track-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .track-icon.blue { background-color: #2563eb; }
+        .track-icon.purple { background-color: #9333ea; }
+        .track-icon.green { background-color: #16a34a; }
+        .track-icon.indigo { background-color: #4f46e5; }
+        .track-icon.orange { background-color: #ea580c; }
+        .track-icon.pink { background-color: #db2777; }
+
+        .track-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+
+        .track-card p {
+            color: var(--slate-400);
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .track-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .track-skill {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background-color: var(--slate-700);
+            color: var(--slate-300);
+            border-radius: 9999px;
+        }
+
+        /* Prizes Section */
+        .prizes-section {
+            padding: 6rem 0;
+            background: linear-gradient(to bottom, var(--slate-800), var(--slate-900));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prizes-bg-glow {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 384px;
+            height: 384px;
+            background-color: rgba(70, 194, 99, 0.1);
+            border-radius: 50%;
+            filter: blur(96px);
+        }
+
+        .prizes-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1024px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .prize-card {
+            position: relative;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 2px solid var(--slate-700);
+            background-color: var(--slate-800);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .prize-card:hover {
+            transform: scale(1.05);
+        }
+
+        .prize-card.highlight {
+            background:HV linear-gradient(to bottom right, rgba(70, 194, 99, 0.2), var(--slate-800));
+            border-color: var(--guvi-color);
+            box-shadow: 0 25px 50px -12px rgba(70, 194, 99, 0.2);
+            order: -1; /* For mobile: highlight first */
+        }
+        
+        @media(min-width: 768px) {
+            .prize-card.highlight {
+                order: initial;
+                transform: scale(1.1);
+                z-index: 20;
+            }
+            .prize-card.highlight:hover {
+                transform: scale(1.15);
+            }
+        }
+
+        .prize-winner-badge {
+            position: absolute;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--guvi-color);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .prize-trophy {
+            margin: 0 auto 1rem;
+            width: 48px;
+            height: 48px;
+        }
+
+        .prize-trophy.highlight {
+            color: var(--guvi-color);
+        }
+
+        .prize-trophy.normal {
+            color: var(--slate-400);
+        }
+
+        .prize-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .prize-amount {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--guvi-color);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .prize-perks {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .prize-perk {
+            display: flex;
+            align-items: flex-start;
+            color: var(--slate-300);
+            margin-bottom: 0.75rem;
+        }
+
+        .prize-perk svg {
+            color: var(--guvi-color);
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+            width: 16px;
+            height: 16px;
+        }
+
+        .prize-perk span {
+            font-size: 0.875rem;
+        }
+
+        /* Schedule Section */
+        .schedule-section {
+            padding: 6rem 0;
+            background: var(--slate-900);
+            position: relative;
+        }
+
+        .schedule-container {
+            max-width: 896px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .schedule-timeline {
+            margin-top: 2rem;
+        }
+
+        .schedule-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .schedule-icon-wrapper {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            background-color: rgba(70, 194, 99, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--guvi-color);
+        }
+
+        .schedule-icon {
+            color: var(--guvi-color);
+            width: 24px;
+            height: 24px;
+        }
+
+        .schedule-content {
+            flex-grow: 1;
+            background-color: var(--slate-800);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--slate-700);
+            transition: border-color 0.3s;
+        }
+
+        .schedule-content:hover {
+            border-color: rgba(70, 194, 99, 0.5);
+        }
+
+        .schedule-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .schedule-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        .schedule-time {
+            font-size: 0.875rem;
+            color: var(--guvi-color);
+            font-weight: 600;
+        }
+
+        .schedule-description {
+            color: var(--slate-400);
+            font-size: 0.875rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 0;
+            background: linear-gradient(to bottom, var(--slate-900), var(--slate-950));
+            position: relative;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-info-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .contact-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(70, 194, 99, 0.2);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-icon {
+            color: var(--guvi-color);
+            width: 24px;
+            height: 24px;
+        }
+
+        .contact-item-content h4 {
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item-content p {
+            color: var(--slate-400);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .contact-form-wrapper {
+            background-color: var(--slate-800);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid var(--slate-700);
+        }
+
+        .contact-form-wrapper h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--slate-300);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--slate-900);
+            border: 1px solid var(--slate-700);
+            border-radius: 0.5rem;
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--guvi-color);
+        }
+
+        .form-submit {
+            width: 100%;
+            background: linear-gradient(to right, var(--guvi-color), var(--guvi-dark));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px -1px rgba(70, 194, 99, 0.3);
+        }
+
+        .form-submit:hover {
+            background: linear-gradient(to right, var(--guvi-dark), var(--guvi-color));
+            box-shadow: 0 4px 6px -1px rgba(70, 194, 99, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--slate-950);
+            padding: 3rem 0;
+            border-top: 1px solid var(--slate-800);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(to bottom right, var(--kec-color), var(--guvi-color));
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .footer-logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-brand p {
+            color: var(--slate-400);
+            font-size: 0.875rem;
+            line-height: 1.75;
+            max-width: 448px;
+        }
+
+        .footer-section h4 {
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--slate-400);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--guvi-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--slate-800);
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            color: var(--slate-400);
+            font-size: 0.875rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-social-icon {
+            color: var(--slate-500);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .footer-social-icon:hover {
+            color: var(--guvi-color);
+        }
+
+        /* Responsive */
+        @media (min-width: 640px) {
+            .event-info-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .hero-buttons {
+                flex-direction: row;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+            }
+            .mobile-menu-button {
+                display: none;
+            }
+            .hero-title {
+                font-size: 4.5rem;
+            }
+            .section-title {
+                font-size: 3rem;
+            }
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .tracks-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .prizes-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .footer-brand {
+                grid-column: span 2;
+            }
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .hero-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-title {
+                font-size: 6rem;
+            }
+            .tracks-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-content">
+                <div class="navbar-logos">
+                    <a href="#" class="logo-group">
+                        <div class="logo-icon">
+                            <i data-lucide="graduation-cap"></i>
+                        </div>
+                        <span class="logo-text">KEC</span>
+                    </a>
+                    <div class="logo-divider"></div>
+                    <a href="#" class="logo-group">
+                        <div class="logo-icon guvi">
+                            <i data-lucide="code"></i>
+                        </div>
+                        <span class="logo-text guvi">GUVI</span>
+                    </a>
+                </div>
+                
+                <div class="nav-menu">
+                    <a href="#about">About</a>
+                    <a href="#tracks">Tracks</a>
+                    <a href="#prizes">Prizes</a>
+                    <a href="#schedule">Schedule</a>
+                    <a href="#contact">Contact</a>
+                    <button class="btn-register">Register Now</button>
+                </div>
+
+                <button class="mobile-menu-button" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="#about">About</a>
+                <a href="#tracks">Tracks</a>
+                <a href="#prizes">Prizes</a>
+                <a href="#schedule">Schedule</a>
+                <a href="#contact">Contact</a>
+                <button>Register Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-background"></div>
+        <div class="hero-glow-1"></div>
+        <div class="hero-glow-2"></div>
+        <div class="hero-glow-3"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i data-lucide="sparkles"></i>
+                <span>Registration Open for 2026 Batch</span>
+            </div>
+
+            <h1 class="hero-title">
+                CodeSprint<br/>
+                <span class="hero-title-gradient">Hackathon 2026</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Kongu Engineering College &times; GUVI
+            </p>
+
+            <p class="hero-description">
+                Join <span class="highlight">500+ developers</span> for a 48-hour coding marathon. 
+                Solve real-world problems, win exciting prizes, and get hired by top tech companies.
+            </p>
+
+            <div class="event-info-grid">
+                <div class="event-info-card">
+                    <i data-lucide="calendar"></i>
+                    <div class="event-info-text">
+                        <span class="event-info-label">Date</span>
+                        <div class="event-info-value">March 15-17, 2026</div>
+                    </div>
+                </div>
+                <div class="event-info-card">
+                    <i data-lucide="map-pin"></i>
+                    <div class="event-info-text">
+                        <span class="event-info-label">Venue</span>
+                        <div class="event-info-value">KEC Convention Center</div>
+                    </div>
+                </div>
+                <div class="event-info-card">
+                    <i data-lucide="users"></i>
+                    <div class="event-info-text">
+                        <span class="event-info-label">Team Size</span>
+                        <div class="event-info-value">2-4 Members</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#register" class="btn-primary">
+                    <i data-lucide="rocket"></i>
+                    Register Team
+                </a>
+                <a href="#discord" class="btn-secondary">
+                    Join Discord
+                    <i data-lucide="message-circle"></i>
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">₹2L+</span>
+                    <span class="hero-stat-label">Prize Pool</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">48h</span>
+                    <span class="hero-stat-label">Coding</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">50+</span>
+                    <span class="hero-stat-label">Mentors</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">10+</span>
+                    <span class="hero-stat-label">Hiring Partners</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="features-section">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Why Participate?</span>
+                <h2 class="section-title">Unlock Your Potential</h2>
+                <div class="section-divider"></div>
+                <p class="section-description">
+                    CodeSprint isn't just a hackathon; it's a launchpad for your career. 
+                    Experience the thrill of building something from scratch.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon kec">
+                        <i data-lucide="lightbulb"></i>
+                    </div>
+                    <h3>Innovation First</h3>
+                    <p>Work on problem statements from top industries or bring your own innovative ideas to life.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon guvi">
+                        <i data-lucide="presentation"></i>
+                    </div>
+                    <h3>Expert Mentorship</h3>
+                    <p>Get 1-on-1 guidance from industry experts at GUVI and senior engineers from top product companies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon purple">
+                        <i data-lucide="briefcase"></i>
+                    </div>
+                    <h3>Career Opportunities</h3>
+                    <p>Direct interview opportunities with sponsoring companies for top performing teams.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tracks" class="tracks-section">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Hackathon Tracks</span>
+                <h2 class="section-title">Choose Your Arena</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="tracks-grid">
+                <div class="track-card">
+                    <div class="track-icon blue">
+                        <i data-lucide="brain-circuit"></i>
+                    </div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>Build intelligent systems that solve complex problems using GenAI, NLP, or Computer Vision.</p>
+                    <div class="track-skills">
+                        <span class="track-skill">Python</span>
+                        <span class="track-skill">TensorFlow</span>
+                        <span class="track-skill">OpenAI API</span>
+                    </div>
+                </div>
+                
+                <div class="track-card">
+                    <div class="track-icon purple">
+                        <i data-lucide="blocks"></i>
+                    </div>
+                    <h3>Web3 & Blockchain</h3>
+                    <p>Decentralize the future with dApps, Smart Contracts, and DeFi solutions.</p>
+                    <div class="track-skills">
+                        <span class="track-skill">Solidity</span>
+                        <span class="track-skill">Ethereum</span>
+                        <span class="track-skill">Rust</span>
+                    </div>
+                </div>
+
+                <div class="track-card">
+                    <div class="track-icon green">
+                        <i data-lucide="leaf"></i>
+                    </div>
+                    <h3>CleanTech & Sustainability</h3>
+                    <p>Technology for a greener planet. Solve environmental challenges with code.</p>
+                    <div class="track-skills">
+                        <span class="track-skill">IoT</span>
+                        <span class="track-skill">Data Analytics</span>
+                        <span class="track-skill">Hardware</span>
+                    </div>
+                </div>
+
+                <div class="track-card">
+                    <div class="track-icon orange">
+                        <i data-lucide="heart-pulse"></i>
+                    </div>
+                    <h3>HealthTech</h3>
+                    <p>Revolutionize healthcare delivery, patient monitoring, and medical diagnosis.</p>
+                    <div class="track-skills">
+                        <span class="track-skill">Mobile Dev</span>
+                        <span class="track-skill">Wearables</span>
+                        <span class="track-skill">AI</span>
+                    </div>
+                </div>
+
+                <div class="track-card">
+                    <div class="track-icon pink">
+                        <i data-lucide="shopping-bag"></i>
+                    </div>
+                    <h3>FinTech & E-Commerce</h3>
+                    <p>Reimagine banking, payments, and online shopping experiences.</p>
+                    <div class="track-skills">
+                        <span class="track-skill">Security</span>
+                        <span class="track-skill">Payments API</span>
+                        <span class="track-skill">Cloud</span>
+                    </div>
+                </div>
+                
+                <div class="track-card">
+                    <div class="track-icon indigo">
+                        <i data-lucide="box"></i>
+                    </div>
+                    <h3>Open Innovation</h3>
+                    <p>Don't fit in a box? Solve any significant problem with a unique tech solution.</p>
+                    <div class="track-skills">
+                        <span class="track-skill">Any Stack</span>
+                        <span class="track-skill">Creativity</span>
+                        <span class="track-skill">Impact</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prizes" class="prizes-section">
+        <div class="prizes-bg-glow"></div>
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Rewards</span>
+                <h2 class="section-title">Win Big</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="prizes-grid">
+                <div class="prize-card">
+                    <div class="prize-trophy normal">
+                        <i data-lucide="award" style="width: 100%; height: 100%;"></i>
+                    </div>
+                    <h3>Runner Up</h3>
+                    <span class="prize-amount">₹50,000</span>
+                    <ul class="prize-perks">
+                        <li class="prize-perk">
+                            <i data-lucide="check"></i>
+                            <span>Goodies & Swag Kit</span>
+                        </li>
+                        <li class="prize-perk">
+                            <i data-lucide="check"></i>
+                            <span>Internship Opportunities</span>
+                        </li>
+                        <li class="prize-perk">
+                            <i data-lucide="check"></i>
+                            <span>GUVI Premium Access</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="prize-card highlight">
+                    <div class="prize-winner-badge">Champion</div>
+                    <div class="prize-trophy highlight">
+                        <i data-lucide="trophy" style="width: 100%; height: 100%;"></i>
+                    </div>
+                    <h3>Winner</h3>
+                    <span class="prize-amount">₹1,00,000</span>
+                    <ul class="prize-perks">
+                        <li class="prize-perk">
+                            <i data-lucide="check"></i>
+                            <span>Exclusive Trophies</span>
+                        </li>
+                        <li class="prize-perk">
+                            <i data-lucide="check"></i>
+                            <span>Pre-Placement Offer</span>
+                        </li>
+                        <li class="prize-perk">
+                            <i data-lucide="check"></i>
+                            <span>GUVI Lifetime Access</span>
+                        </li>
+                        <li class="prize-perk">
+                            <i data-lucide="check"></i>
+                            <span>Incubation Support</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="prize-card">
+                    <div class="prize-trophy normal">
+                        <i data-lucide="medal" style="width: 100%; height: 100%;"></i>
+                    </div>
+                    <h3>2nd Runner Up</h3>
+                    <span class="prize-amount">₹25,000</span>
+                    <ul class="prize-perks">
+                        <li class="prize-perk">
+                            <i data-lucide="check"></i>
+                            <span>Goodies Kit</span>
+                        </li>
+                        <li class="prize-perk">
+                            <i data-lucide="check"></i>
+                            <span>Certificates</span>
+                        </li>
+                        <li class="prize-perk">
+                            <i data-lucide="check"></i>
+                            <span>GUVI Courses</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p class="special-prizes" style="margin-top: 3rem; text-align: center; color: var(--slate-400);">
+                + Special prizes for <strong>Best All-Girls Team</strong>, <strong>Best UI/UX</strong>, and <strong>Best Pitch</strong>.
+            </p>
+        </div>
+    </section>
+
+    <section id="schedule" class="schedule-section">
+        <div class="schedule-container">
+            <div class="section-header">
+                <span class="section-badge">Timeline</span>
+                <h2 class="section-title">Event Schedule</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="schedule-timeline">
+                <div class="schedule-item">
+                    <div class="schedule-icon-wrapper">
+                        <div class="schedule-icon">
+                            <i data-lucide="flag"></i>
+                        </div>
+                    </div>
+                    <div class="schedule-content">
+                        <div class="schedule-header">
+                            <h3 class="schedule-title">Registration Starts</h3>
+                            <span class="schedule-time">Feb 01, 2026</span>
+                        </div>
+                        <p class="schedule-description">Online registration opens for all college students. Form your teams!</p>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-icon-wrapper">
+                        <div class="schedule-icon">
+                            <i data-lucide="cpu"></i>
+                        </div>
+                    </div>
+                    <div class="schedule-content">
+                        <div class="schedule-header">
+                            <h3 class="schedule-title">Hackathon Begins</h3>
+                            <span class="schedule-time">Mar 15, 9:00 AM</span>
+                        </div>
+                        <p class="schedule-description">Opening ceremony followed by problem statement reveal and hacking starts.</p>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-icon-wrapper">
+                        <div class="schedule-icon">
+                            <i data-lucide="coffee"></i>
+                        </div>
+                    </div>
+                    <div class="schedule-content">
+                        <div class="schedule-header">
+                            <h3 class="schedule-title">Mentorship Rounds</h3>
+                            <span class="schedule-time">Mar 16, All Day</span>
+                        </div>
+                        <p class="schedule-description">Expert review of prototypes and guidance sessions for teams.</p>
+                    </div>
+                </div>
+
+                <div class="schedule-item">
+                    <div class="schedule-icon-wrapper">
+                        <div class="schedule-icon">
+                            <i data-lucide="mic"></i>
+                        </div>
+                    </div>
+                    <div class="schedule-content">
+                        <div class="schedule-header">
+                            <h3 class="schedule-title">Final Pitching</h3>
+                            <span class="schedule-time">Mar 17, 2:00 PM</span>
+                        </div>
+                        <p class="schedule-description">Top 10 teams present their solutions to the jury panel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="section-container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-info-header">
+                        <h3>Get in Touch</h3>
+                        <p style="color: var(--slate-400);">Have questions? Reach out to our organizing team or visit us at the campus.</p>
+                    </div>
+                    
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon-wrapper">
+                                <i data-lucide="mail" class="contact-icon"></i>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Email Us</h4>
+                                <p>hackathon@kongu.ac.in</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon-wrapper">
+                                <i data-lucide="phone" class="contact-icon"></i>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Call Us</h4>
+                                <p>+91 98765 43210</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon-wrapper">
+                                <i data-lucide="map" class="contact-icon"></i>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Location</h4>
+                                <p>Kongu Engineering College,<br>Perundurai, Erode - 638060</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <h3>Send a Message</h3>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i data-lucide="code-2"></i>
+                        </div>
+                        <span class="footer-logo-text">CodeSprint 2026</span>
+                    </div>
+                    <p>A collaborative initiative by Kongu Engineering College and GUVI to foster innovation and technical excellence among students.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#schedule">Schedule</a></li>
+                        <li><a href="#prizes">Prizes</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Code of Conduct</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 CodeSprint Hackathon. All rights reserved.</p>
+                <div class="footer-social">
+                    <i data-lucide="instagram" class="footer-social-icon"></i>
+                    <i data-lucide="twitter" class="footer-social-icon"></i>
+                    <i data-lucide="linkedin" class="footer-social-icon"></i>
+                    <i data-lucide="github" class="footer-social-icon"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
